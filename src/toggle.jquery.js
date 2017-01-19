@@ -156,11 +156,6 @@
                 // From: https://github.com/edenspiekermann/a11y-dialog/blob/master/a11y-dialog.js#L31
                 var links = state.target.find(focusableElements);
 
-                links.filter(function () {
-                    return $(this).attr('attributeid') == 41
-                });
-                console.log(links.filter('[type=radio]'));
-
                 // store first focusable element for future reference
                 state.firstFocusElement = links.first();
 
