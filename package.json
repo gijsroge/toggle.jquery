@@ -1,18 +1,15 @@
 {
-  "name": "simple-responsive-nav",
-  "version": "1.1.2",
+  "name": "toggle.jquery",
+  "version": "1.0.0",
   "description": "",
-  "main": "./src/simple-nav.js",
-  "scripts": {
-    "test": "node ./node_modules/jshint/bin/jshint src/simple-nav.js && gulp test --verbose --force"
-  },
+  "main": "./src/toggle.jquery.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:gijsroge/simple-nav.git"
+    "url": "git@github.com:gijsroge/toggle.jquery.git"
   },
   "author": "gijsroge <rogegijs@gmail.com>",
   "license": "ISC",
-  "homepage": "https://github.com/gijsroge/simple-nav",
+  "homepage": "https://github.com/gijsroge/toggle.jquery",
   "devDependencies": {
     "autoprefixer": "6.3.6",
     "browser-sync": "2.16.0",
