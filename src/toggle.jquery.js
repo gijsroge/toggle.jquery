@@ -137,7 +137,6 @@
                         // Shift tab
                         if (e.shiftKey) {
                             if (item.is(state.$this)) {
-                                console.log('close');
                                 a11yToggle.close($this);
                             }
                         } else {
