@@ -112,9 +112,11 @@
                 /**
                  * Bind focus event to toggles
                  */
-                $this.on('focus', function () {
-                    if (!state.open) {
-                        a11yToggle.open($(this), true);
+
+                $(window).on('keyup', function (e) {
+                    var code = (e.keyCode ? e.keyCode : e.which);
+                    if (code == 9 && $($this).is(':focus') && !state.open) {
+                        a11yToggle.open($this, true);
                     }
                 });
 
