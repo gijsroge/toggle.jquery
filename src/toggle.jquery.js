@@ -99,7 +99,7 @@
                             a11yToggle.close($this)
                         }
                     }
-                })
+                });
             },
 
             openOnFocus: function ($this) {
@@ -112,10 +112,16 @@
                 /**
                  * Bind focus event to toggles
                  */
-
-                $(window).on('keyup keydown', function (e) {
+                $(window).on('keydown', function (e) {
                     var code = (e.keyCode ? e.keyCode : e.which);
-                    if (code == 9 && $($this).is(':focus') && !state.open) {
+                    if (code == 9 && $($this).is(':focus') && !state.open && !e.shiftKey) {
+                        a11yToggle.open($this, true);
+                    }
+                });
+
+                $(window).on('keyup', function (e) {
+                    var code = (e.keyCode ? e.keyCode : e.which);
+                    if (code == 9 && $($this).is(':focus') && !state.open && e.shiftKey) {
                         a11yToggle.open($this, true);
                     }
                 });
@@ -131,6 +137,7 @@
                         // Shift tab
                         if (e.shiftKey) {
                             if (item.is(state.$this)) {
+                                console.log('close');
                                 a11yToggle.close($this);
                             }
                         } else {
