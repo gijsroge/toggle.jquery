@@ -242,6 +242,11 @@
                 app.trapFocus($this);
             }
 
+            // If setting is enabled to append target to body
+            if(state.settings.body){
+                state.target.appendTo('body');
+            }
+
             // Fire open event
             $this.trigger("a11ytoggle:open", [$this]);
         };
@@ -282,6 +287,7 @@
                     trapfocus: $(this).is('[data-a11y-trapfocus]') ? $(this).data('a11y-trapfocus') : false,
                     openOnFocus: $(this).is('[data-a11y-openonfocus]') ? $(this).data('a11y-openonfocus') : false,
                     restoreFocus: $(this).is('[data-a11y-restore-focus]') ? $(this).data('a11y-restore-focus') : true,
+                    body: $(this).is('[data-a11y-body]') ? $(this).data('a11y-body') : false,
                     aria: true
                 }, options);
 
