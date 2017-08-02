@@ -168,7 +168,7 @@
                 state.firstFocusElement = links.first();
 
                 // set focus on first element
-                if (state.firstFocusElement != undefined) {
+                if (state.firstFocusElement != undefined && state.settings.autofocus != true) {
                     setTimeout(function () {
                         state.firstFocusElement.focus();
                     }, 50)
@@ -238,8 +238,14 @@
             state.target.addClass(state.settings.activeClass);
 
             // Trap focus
-            if (state.trapfocus == true) {
+            if (state.trapfocus === true) {
                 app.trapFocus($this);
+            }
+
+            if(state.settings.autofocus === true){
+                setTimeout(function () {
+                    state.target.find('[autofocus]').focus();
+                }, state.settings.autofocusDelay)
             }
 
             // If setting is enabled to append target to body
@@ -285,6 +291,8 @@
                     escape: $(this).is('[data-a11y-esc]') ? $(this).data('a11y-esc') : true,
                     closeButton: '.js-a11y-close',
                     trapfocus: $(this).is('[data-a11y-trapfocus]') ? $(this).data('a11y-trapfocus') : false,
+                    autofocus: $(this).is('[data-a11y-autofocus]') ? $(this).data('a11y-autofocus') : false,
+                    autofocusDelay: $(this).is('[data-a11y-autofocus-delay]') ? $(this).data('a11y-autofocus-delay') : 50,
                     openOnFocus: $(this).is('[data-a11y-openonfocus]') ? $(this).data('a11y-openonfocus') : false,
                     restoreFocus: $(this).is('[data-a11y-restore-focus]') ? $(this).data('a11y-restore-focus') : true,
                     body: $(this).is('[data-a11y-body]') ? $(this).data('a11y-body') : false,
