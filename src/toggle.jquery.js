@@ -94,7 +94,13 @@
                  */
                 $(document).on('click', function (e) {
                     var state = app.getState($this);
-                    if (!$(e.target).is($this) && !$this.find(e.target).length > 0 && !state.target.find(e.target).length > 0 && !$(e.target).is(state.target) && state.settings.outside) {
+                    if (
+                        !$(e.target).is($this) &&
+                        !$this.find(e.target).length > 0 &&
+                        !state.target.find(e.target).length > 0 &&
+                        !$(e.target).is(state.target) &&
+                        state.settings.outside &&
+                        $.contains(document.documentElement, $this[0])) {
                         if (state.open) {
                             a11yToggle.close($this)
                         }
@@ -242,14 +248,14 @@
                 app.trapFocus($this);
             }
 
-            if(state.settings.autofocus === true){
+            if (state.settings.autofocus === true) {
                 setTimeout(function () {
                     state.target.find('[autofocus]').focus();
                 }, state.settings.autofocusDelay)
             }
 
             // If setting is enabled to append target to body
-            if(state.settings.body){
+            if (state.settings.body) {
                 state.target.appendTo('body');
             }
 
