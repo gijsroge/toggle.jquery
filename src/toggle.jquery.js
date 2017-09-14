@@ -22,7 +22,7 @@
              * @param i
              */
             prepareHtml: function ($this, i) {
-                var $target = $this.parent().find(state[i].settings.target);
+                var $target = state[i].parent.find(state[i].settings.target);
                 var id = $this.attr('id') ? $this.attr('id') : 'a11y-toggle-' + i;
                 $this.attr('data-a11y-instance', i);
                 $this.attr('id', id);
@@ -38,6 +38,8 @@
 
                 // Test if aria attributes are setup correctly
                 if ($this.attr('aria-controls') != $target.attr('id') && state[i].settings.aria) {
+                    console.log('aria-controls element: '+$this);
+                    console.log('target element: '+$target);
                     console.warn('aria-controls must have the same value as the target id.');
                 }
             },
@@ -290,6 +292,7 @@
                  * Plugin default options
                  */
                 var settings = $.extend({
+                    open: $(this).is('[data-a11y-open]') ? $(this).data('a11y-open') : false,
                     parent: $(this).is('[data-a11y-parent]') ? $(this).data('a11y-parent') : true,
                     target: $(this).is('[data-a11y-target]') ? $(this).data('a11y-target') : '.js-a11y-target',
                     activeClass: 'is-open',
@@ -326,8 +329,13 @@
                 app.prepareHtml($(this), instance);
 
                 // Auto open on focus
-                if (state[instance].openOnFocus == true) {
+                if (state[instance].openOnFocus === true) {
                     app.openOnFocus($(this));
+                }
+
+                // Auto open on page load
+                if (state[instance].settings.open === true) {
+                    a11yToggle.open($(this));
                 }
             }
             app.bindUIevents($(this), state[instance]);
