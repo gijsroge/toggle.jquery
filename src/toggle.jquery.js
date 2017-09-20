@@ -337,8 +337,9 @@
                 if (state[instance].settings.open === true) {
                     a11yToggle.open($(this));
                 }
+
+                app.bindUIevents($(this), state[instance]);
             }
-            app.bindUIevents($(this), state[instance]);
 
             // Increment instance count on each loop
             if (!ran) {
