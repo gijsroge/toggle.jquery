@@ -3,8 +3,27 @@
  * Author: @gijsroge
  * Licensed under the MIT license
  */
-(function ($) {
+(function( global, factory ) {
 
+    if ( typeof module === "object" && typeof module.exports === "object" ) {
+        // For CommonJS and CommonJS-like environments where a proper window is present,
+        // execute the factory and get jQuery
+        // For environments that do not inherently posses a window with a document
+        // (such as Node.js), expose a jQuery-making factory as module.exports
+        module.exports = global.document ?
+            factory( global, true ) :
+            function( w ) {
+                if ( !w.document ) {
+                    throw new Error( "jQuery requires a window with a document" );
+                }
+                return factory( w );
+            };
+    } else {
+        factory( global );
+    }
+
+// Pass this if window is not defined yet
+}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
     var instance = 0;
     var state = [];
     var focusableElements = 'a[href]:visible, area[href]:visible, input:not([disabled]):visible, select:not([disabled]):visible, textarea:not([disabled]):visible, button:not([disabled]):visible, iframe:visible, object:visible, embed:visible, [contenteditable]:visible, [tabindex]:not([tabindex^="-"]):visible';
@@ -349,13 +368,4 @@
 
         return this;
     };
-
-    /**
-     * Auto discover
-     */
-    $('.js-a11y-toggle').each(function () {
-        var settings = $(this).data('a11y-settings');
-        $(this).a11yToggle(settings);
-    })
-
-}(jQuery));
+}));
