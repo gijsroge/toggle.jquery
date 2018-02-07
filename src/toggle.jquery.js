@@ -82,14 +82,23 @@
              */
             bindUIevents: function ($this, state) {
 
-                state.$this.on('click', function (e) {
-                    e.preventDefault();
-                    if (state.open && !state.kb) {
-                        a11yToggle.close($(this))
-                    } else {
-                        a11yToggle.open($(this))
-                    }
-                });
+                if(!state.settings.hover){
+                    state.$this.on('click', function (e) {
+                        e.preventDefault();
+                        if (state.open && !state.kb) {
+                            a11yToggle.close($(this))
+                        } else {
+                            a11yToggle.open($(this))
+                        }
+                    });
+                }else{
+                    state.$this.on('mouseenter', function (e) {
+                        a11yToggle.open($(this));
+                    });
+                    state.parent.on('mouseleave', function (e) {
+                        a11yToggle.close(state.$this);
+                    });
+                }
 
                 /**
                  * Close when user clicks on close button
@@ -324,6 +333,7 @@
                     openOnFocus: $(this).is('[data-a11y-openonfocus]') ? $(this).data('a11y-openonfocus') : false,
                     restoreFocus: $(this).is('[data-a11y-restore-focus]') ? $(this).data('a11y-restore-focus') : true,
                     body: $(this).is('[data-a11y-body]') ? $(this).data('a11y-body') : false,
+                    hover: $(this).is('[data-a11y-hover]') ? $(this).data('a11y-hover') : false,
                     aria: true
                 }, options);
 
