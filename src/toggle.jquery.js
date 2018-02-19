@@ -57,8 +57,6 @@
 
                 // Test if aria attributes are setup correctly
                 if ($this.attr('aria-controls') != $target.attr('id') && state[i].settings.aria) {
-                    console.log('aria-controls element: '+$this);
-                    console.log('target element: '+$target);
                     console.warn('aria-controls must have the same value as the target id.');
                 }
             },
