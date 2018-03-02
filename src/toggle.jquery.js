@@ -3,27 +3,27 @@
  * Author: @gijsroge
  * Licensed under the MIT license
  */
-(function( global, factory ) {
+(function (global, factory) {
 
-    if ( typeof module === "object" && typeof module.exports === "object" ) {
+    if (typeof module === "object" && typeof module.exports === "object") {
         // For CommonJS and CommonJS-like environments where a proper window is present,
         // execute the factory and get jQuery
         // For environments that do not inherently posses a window with a document
         // (such as Node.js), expose a jQuery-making factory as module.exports
         module.exports = global.document ?
-            factory( global, true ) :
-            function( w ) {
-                if ( !w.document ) {
-                    throw new Error( "jQuery requires a window with a document" );
+            factory(global, true) :
+            function (w) {
+                if (!w.document) {
+                    throw new Error("jQuery requires a window with a document");
                 }
-                return factory( w );
+                return factory(w);
             };
     } else {
-        factory( global );
+        factory(global);
     }
 
 // Pass this if window is not defined yet
-}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+}(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
     var instance = 0;
     var state = [];
     var focusableElements = 'a[href]:visible, area[href]:visible, input:not([disabled]):visible, select:not([disabled]):visible, textarea:not([disabled]):visible, button:not([disabled]):visible, iframe:visible, object:visible, embed:visible, [contenteditable]:visible, [tabindex]:not([tabindex^="-"]):visible';
@@ -80,7 +80,7 @@
              */
             bindUIevents: function ($this, state) {
 
-                if(!state.settings.hover){
+                if (!state.settings.hover) {
                     state.$this.on('click', function (e) {
                         e.preventDefault();
                         if (state.open && !state.kb) {
@@ -89,7 +89,7 @@
                             a11yToggle.open($(this))
                         }
                     });
-                }else{
+                } else {
                     state.$this.on('mouseenter', function (e) {
                         a11yToggle.open($(this));
                     });
@@ -217,6 +217,9 @@
                             if (state.settings.restoreFocus) {
                                 state.lastfocus.focus();
                             }
+                            if (state.settings.scrollBackInView) {
+                                state.target[0].scrollIntoView();
+                            }
                         }
                     });
 
@@ -330,6 +333,7 @@
                     autofocusDelay: $(this).is('[data-a11y-autofocus-delay]') ? $(this).data('a11y-autofocus-delay') : 50,
                     openOnFocus: $(this).is('[data-a11y-openonfocus]') ? $(this).data('a11y-openonfocus') : false,
                     restoreFocus: $(this).is('[data-a11y-restore-focus]') ? $(this).data('a11y-restore-focus') : true,
+                    scrollBackInView: $(this).is('[data-a11y-scroll-back-in-view]') ? $(this).data('a11y-scroll-back-in-view') : true,
                     body: $(this).is('[data-a11y-body]') ? $(this).data('a11y-body') : false,
                     hover: $(this).is('[data-a11y-hover]') ? $(this).data('a11y-hover') : false,
                     aria: true
