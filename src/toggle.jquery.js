@@ -202,7 +202,7 @@
                 state.firstFocusElement = links.first();
 
                 // set focus on first element
-                if (state.firstFocusElement != undefined && state.settings.autofocus != true) {
+                if (state.firstFocusElement != undefined && state.settings.autofocus != true && !state.firstFocusElement.is('input')) {
                     setTimeout(function () {
                         state.firstFocusElement.focus();
                     }, 50)
@@ -333,7 +333,7 @@
                     autofocusDelay: $(this).is('[data-a11y-autofocus-delay]') ? $(this).data('a11y-autofocus-delay') : 50,
                     openOnFocus: $(this).is('[data-a11y-openonfocus]') ? $(this).data('a11y-openonfocus') : false,
                     restoreFocus: $(this).is('[data-a11y-restore-focus]') ? $(this).data('a11y-restore-focus') : true,
-                    scrollBackInView: $(this).is('[data-a11y-scroll-back-in-view]') ? $(this).data('a11y-scroll-back-in-view') : true,
+                    scrollBackInView: $(this).is('[data-a11y-scroll-back-in-view]') ? $(this).data('a11y-scroll-back-in-view') : false,
                     body: $(this).is('[data-a11y-body]') ? $(this).data('a11y-body') : false,
                     hover: $(this).is('[data-a11y-hover]') ? $(this).data('a11y-hover') : false,
                     aria: true

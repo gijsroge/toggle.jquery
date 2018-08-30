@@ -1,6 +1,6 @@
 {
   "name": "toggle.jquery",
-  "version": "1.1.5",
+  "version": "1.1.7",
   "description": "",
   "main": "./src/toggle.jquery.js",
   "repository": {
@@ -12,22 +12,22 @@
   "homepage": "https://github.com/gijsroge/toggle.jquery",
   "devDependencies": {
     "autoprefixer": "6.3.6",
+    "babel-preset-env": "^1.1.8",
     "browser-sync": "2.16.0",
     "gulp": "3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-plumber": "1.1.0",
     "gulp-postcss": "6.1.1",
     "gulp-sass": "2.3.1",
     "gulp-sourcemaps": "^2.4.0",
     "gulp-watch": "4.3.6",
-    "jquery": "^3.1.1",
+    "jquery": "^3.3.1",
     "jshint": "^2.9.3",
-    "node-qunit-phantomjs": "^1.4.0",
+    "node-qunit-phantomjs": "^2.0.0",
     "postcss-reporter": "1.3.3",
     "postcss-scss": "0.1.8",
-    "qunitjs": "^2.0.1",
-    "require-dir": "0.3.0",
-    "babel-preset-env": "^1.1.8",
-    "gulp-babel": "^6.1.2"
+    "qunitjs": "^2.4.1",
+    "require-dir": "1.0.0"
   },
   "dependencies": {}
 }
